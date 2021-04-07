@@ -6,8 +6,8 @@ using namespace std;
 //
 // Space: O(1)
 // Time:
-//    - best case: O(N) -> sorted array
-//    - worst case: O(N*N) -> unsorted array
+//    - best case: O(n) -> sorted array
+//    - worst case: O(n*n) -> unsorted array
 //
 vector<int> bubbleSort(vector<int> array) {
   bool isSorted = false;
