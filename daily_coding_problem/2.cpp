@@ -49,7 +49,7 @@ using namespace std;
 // Complexity:
 //
 // Space: O(n)
-// Time: O(n*n)
+// Time: O(n^2)
 //
 vector<int> product(vector<int> nums) {
   vector<int> products(nums.size(), 1);

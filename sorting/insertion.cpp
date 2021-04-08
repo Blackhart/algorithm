@@ -7,7 +7,7 @@ using namespace std;
 // Space: O(1)
 // Time:
 //    - best case: O(n) -> sorted array
-//    - worst case: O(n*n) -> unsorted array
+//    - worst case: O(n^2) -> unsorted array
 //
 vector<int> insertionSort(vector<int> array) {
   for (size_t i = 1; i < array.size(); i++) {
