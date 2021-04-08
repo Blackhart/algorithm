@@ -18,55 +18,55 @@ between nodes and memory addresses.
 
 using namespace std;
 
-template <typename T>
-class XORLinkedList {
- private:
+template <typename T> class XORLinkedList {
+private:
   struct Node {
     T value;
-    Node* both;
-  }* head = nullptr;
+    Node *both;
+  } *head = nullptr;
 
- public:
+public:
   void Add(T value) {
-    Node* n = new Node();
+    Node *n = new Node();
     n->value = value;
     n->both = nullptr;
 
     if (!head)
       head = n;
     else {
-      Node* current = head;
-      Node* previous = nullptr;
+      Node *current = head;
+      Node *previous = nullptr;
 
       while (current) {
-        Node* tmp = previous;
+        Node *tmp = previous;
         previous = current;
-        current = ((Node*)((uintptr_t)current->both ^ (uintptr_t)tmp));
+        current = ((Node *)((uintptr_t)current->both ^ (uintptr_t)tmp));
       }
 
       current = n;
-      current->both = (Node*)((uintptr_t)previous ^ (uintptr_t) nullptr);
+      current->both = (Node *)((uintptr_t)previous ^ (uintptr_t) nullptr);
 
       if (previous) {
         previous->both =
-            (Node*)((uintptr_t)previous->both ^ (uintptr_t) nullptr);
+            (Node *)((uintptr_t)previous->both ^ (uintptr_t) nullptr);
         previous->both =
-            (Node*)((uintptr_t)previous->both ^ (uintptr_t)current);
+            (Node *)((uintptr_t)previous->both ^ (uintptr_t)current);
       }
     }
   }
 
   T Get(size_t index) {
-    Node* current = head;
-    Node* previous = nullptr;
+    Node *current = head;
+    Node *previous = nullptr;
 
     for (size_t i = 0; i < index && current; i++) {
-      Node* tmp = previous;
+      Node *tmp = previous;
       previous = current;
-      current = ((Node*)((uintptr_t)current->both ^ (uintptr_t)tmp));
+      current = ((Node *)((uintptr_t)current->both ^ (uintptr_t)tmp));
     }
 
-    if (!current) throw new out_of_range("");
+    if (!current)
+      throw new out_of_range("");
 
     return current->value;
   }
